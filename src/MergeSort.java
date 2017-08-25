@@ -6,27 +6,20 @@ public class MergeSort {
 
     static void merge(int[] data, int p, int q, int r) {
 
-        // usa 2 arrays para armazenar a direita e a esquerda
-        int n1 = q - p + 1; //meio - inicio + 1
-        int n2 = r - q; // fim - meio
-        int[] left = new int[n1];
-        int[] right = new int[n2];
+        int n = r - p + 1;
 
-        for (int i = 0; i < n1; i++)
-            left[i] = data[p + i];
-        for (int i = 0; i < n2; i++)
-            right[i] = data[q + i];
+        int[] copy = new int[n];
+
+        for (int i = 0; i < n; i++)
+            copy[i] = data[p+i];
 
         int i = 0;
-        int j = 0;
-        for (int k = p; k < r; k++) {
-            if (left[i] <= right[j]) {
-                data[k] = left[i];
-                i++;
-            } else {
-                data[k] = right[j];
-                j++;
-            }
+        int j = copy.length - 1;
+        for (int k = p; k <= r; k++) {
+            if (copy[i] <= copy[j])
+                data[k] = copy[i++];
+            else
+                data[k] = copy[j--];
         }
     }
 
@@ -56,7 +49,7 @@ public class MergeSort {
 
 
     public static void main(String[] args) {
-        int[] data = new int[]{1, 5, 6, 2, 8, 3, 9, 4, 7};
+        int[] data = new int[]{3, 2, 1, 3};
         // ordene do primeiro ao último índice
         sort(data, 0, data.length - 1);
         print(data);
