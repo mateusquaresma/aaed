@@ -1,3 +1,5 @@
+package base;
+
 /**
  * Piso de logaritmo truncado.
  *
